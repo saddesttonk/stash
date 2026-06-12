@@ -1,0 +1,31 @@
+ÿ<!DOCTYPE html>
+<html>
+<head>
+    <title>Poxel Tuff</title>
+</head>
+<body>
+    <!-- The game will likely be blocked from loading here -->
+    <iframe id="gameFrame" src="https://poxel.io" width="1518" height="853"></iframe>
+    <script>
+        const iframe = document.getElementById('gameFrame');
+
+
+        // Listen for messages FROM the iframe (if it can send them)
+        window.addEventListener('message', (event) => {
+            // WARNING: Always verify the origin for security!
+            // if (event.origin !== 'https://poxel.io') return;
+            console.log('Message from game:', event.data);
+        });
+
+
+        // Function to send a message TO the iframe
+        function sendAimCommand(data) {
+            iframe.contentWindow.postMessage(JSON.stringify(data), '*');
+        }
+
+
+        // Example: Simulate sending an aim command
+        // sendAimCommand({ type: 'aim', x: 100, y: 150 });
+    </script>
+</body>
+</html>
